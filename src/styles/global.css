@@ -1,0 +1,35 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
+@import "tailwindcss";
+
+.markdown-container .katex,
+.markdown-container .katex * {
+  all: revert;
+  white-space: nowrap;  
+}
+
+.markdown-container .katex-html{
+  display: none !important;
+}
+
+.markdown-container .katex-mathml {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; 
+  white-space: nowrap;
+  transform: translateY(10px);
+}
+
+.markdown-container .katex-mathml > .katex {
+  min-width: max-content;
+  display: inline-block;
+}
+
+.markdown-container .katex-inline-wrapper {
+  display: inline-block;
+  overflow-x: auto; 
+  max-width: 100%;
+}

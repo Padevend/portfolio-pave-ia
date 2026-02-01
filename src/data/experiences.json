@@ -1,0 +1,42 @@
+[
+    {
+        "title": "Founder & Full Stack Developer",
+        "company": "Event Management Platform (Cameroun/Afrique Centrale)",
+        "period": "2024 - Today",
+        "description": "Design and development of a complete event management solution (ticketing, registration, check-in). Focus on adapting to the African market with integration of local payment methods and optimized UX. Gradual deployment and implementation of a marketing strategy.",
+        "highlights": [
+            "HTML",
+            "tailwindcss",
+            "AdonisJS",
+            "postgreSQL",
+            "React",
+            "Flutter"
+        ]
+    },
+    {
+        "title": "Software Developer Internship",
+        "company": "Mayem Solution",
+        "period": "June 2024 - August 2024",
+        "description": "Learning the fundamentals of modeling: class diagram, specifications, case diagram, UML method, conceptual data model (CDM), logical data model (LDM).",
+        "highlights": [
+            "UML",
+            "SQL",
+            "PHP - Slim",
+            "fastAPI"
+        ]
+    },
+    {
+        "title": "Software Engineering Student & Tech Enthusiast",
+        "company": "Academic & Personal Learning",
+        "period": "Before 2024",
+        "description": "Learning the fundamentals of software development: algorithms, LaTeX for scientific writing, setting up development environments (Gradle, Flutter, Dart SDK, etc.).",
+        "highlights": [
+            "HTML",
+            "tailwindcss",
+            "React",
+            "postgreSQL",
+            "React Native",
+            "Flutter"
+        ]
+    }
+]

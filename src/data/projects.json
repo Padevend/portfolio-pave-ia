@@ -1,0 +1,43 @@
+[
+  {
+    "title": "Ticky - Event Manager",
+    "description":
+      "All-in-one platform to create, organize and manage your professional events with an exceptional user experience and cutting-edge tools.",
+    "tags": ["ReactJS", "TypeScript", "Mobile payment", "AdonisJS", "PostgreSQL"],
+    "image": "/projects/ticky.png",
+    "link": "https://ticky.azariats.cloud"
+  },
+  {
+    "title": "GLCH community landing page",
+    "description":
+      "Showcase site of a community health association in the western region of Cameroon with monitoring and registration for community events.",
+    "tags": ["ReactJS", "TypeScript", "Map", "PostgreSQL"],
+    "image": "/projects/glch-landing.png",
+    "link": "https://glchcommunity.online/"
+  },
+  {
+    "title": "TelePost",
+    "description":
+      "Blog with an integrated content manager for the publication of posts by each user, practical application of web development with Python.",
+    "tags": ["Python", "Django", "Javascript", "HTML", "CSS", "SQLite"],
+    "image": "/placeholder.svg",
+    "github": "https://github.com/Padevend/Postblog"
+  },
+  {
+    "title": "GLCH card payement",
+    "description":
+      "Subscription interface to a 1-year plan on the membership card as a member of the GLCH health community with integrated payment via Mobile Money.",
+    "tags": ["ReactJS", "node.js", "Tailwind", "Mobile payment", "Google Sheets"],
+    "image": "/placeholder.svg",
+    "link": "https://glchcommmunitycard.netlify.app/"
+  },
+  {
+    "title": "Validix - JS",
+    "description":
+      "A fast, vanilla JS form validator designed for quick use in projects, eliminating the need for complex and often difficult-to-implement frameworks.",
+    "tags": ["HTML", "CSS", "Javascript Vanilla"],
+    "image":
+      "/placeholder.svg",
+    "github": "https://github.com/Padevend/Validix.git"
+  }
+]

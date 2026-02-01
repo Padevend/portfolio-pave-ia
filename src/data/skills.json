@@ -1,0 +1,47 @@
+[
+    {
+        "category": "Frontend",
+        "code": "UI_LAYER_01",
+        "description": "Interfaces réactives et centrées sur l'utilisateur.",
+        "items": [
+            "React",
+            "TypeScript",
+            "Tailwind CSS",
+            "Pico CSS",
+            "Redux"
+        ]
+    },
+    {
+        "category": "Backend",
+        "code": "CORE_SERVER_02",
+        "description": "Architectures robustes et serveurs haute disponibilité.",
+        "items": [
+            "Express JS",
+            "Hono JS",
+            "Adonis JS",
+            "Flask"
+        ]
+    },
+    {
+        "category": "Databases",
+        "code": "DATA_STORAGE_03",
+        "description": "Gestion efficace des données et performances optimisées.",
+        "items": [
+            "MySQL",
+            "PostgreSQL",
+            "MongoDB",
+            "Redis"
+        ]
+    },
+    {
+        "category": "Tools & More",
+        "code": "DEV_TOOLS_04",
+        "description": "Outils et pratiques pour le développement moderne.",
+        "items": [
+            "API REST",
+            "SaaS Development",
+            "Git",
+            "UI Libraries"
+        ]
+    }
+]

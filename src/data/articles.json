@@ -1,0 +1,19 @@
+[
+  {
+    "title": "ML: linear-regression",
+    "tags": ["Machine Learning", "Mathematics", "Python"],
+    "short_desc":
+      "Une exploration approfondie des fondements de la régression linéaire et de son application dans la prédiction de données continues.",
+    "slug": "ml-linear-regression",
+    "content_path": "/docs/linear_regression.md",
+    "date": "2024-03-15"
+  },
+  {
+    "title": "Math: Descente de Gradient",
+    "tags": ["Mathématiques", "Optimisation"],
+    "short_desc": "Une introduction à la méthode de descente de gradient et son utilisation dans l'apprentissage automatique.",
+    "slug": "math-gradient-descent",
+    "content_path": "/docs/gradient_descent.md",
+    "date": "2024-03-20"
+  }
+]
