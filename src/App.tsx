@@ -1,22 +1,30 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Suspense, lazy } from "react";
 import Navbar from "./components/ui/navbar";
-import HomePage from "./pages/Home_page";
-import SkillsPage from "./pages/skills_page";
 import { Footer } from "./components/sections/Footer";
-import ExperiencePage from "./pages/experiences_page";
-import ProjectsPage from "./pages/projects_pages";
-import NotFound from "./components/sections/notfound";
-import Contact from "./pages/contact_page";
-import Blog from "./pages/blog_page";
-import ArticlePage from "./pages/article_page";
+import LoadingFallback from "./components/ui/loadingFallback";
+
+// ── Lazy Loading des pages ────────────────────────────────────────────────
+const HomePage = lazy(() => import("./pages/Home_page"));
+const SkillsPage = lazy(() => import("./pages/skills_page"));
+const ExperiencePage = lazy(() => import("./pages/experiences_page"));
+const ProjectsPage = lazy(() => import("./pages/projects_pages"));
+const Contact = lazy(() => import("./pages/contact_page"));
+const Blog = lazy(() => import("./pages/blog_page"));
+const ArticlePage = lazy(() => import("./pages/article_page"));
+const NotFound = lazy(() => import("./components/sections/notfound"));
 
 function App() {
-
   return (
-    <>
-      <BrowserRouter>
-        <Navbar />
+    <BrowserRouter>
+      <Navbar />
 
+      {/* Suspense avec fallback pendant le chargement */}
+      <Suspense
+        fallback={
+          <LoadingFallback />
+        }
+      >
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/skills" element={<SkillsPage />} />
@@ -25,13 +33,12 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<ArticlePage />} /> 
-
           <Route path="*" element={<NotFound />} />
         </Routes>
+      </Suspense>
 
-        <Footer />
-      </BrowserRouter>
-    </>
+      <Footer />
+    </BrowserRouter>
   );
 }
 
