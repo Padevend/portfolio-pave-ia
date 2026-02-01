@@ -21,6 +21,7 @@ export const Footer: React.FC = () => {
       { name: 'Expériences', path: '/experiences' },
       { name: 'Projets', path: '/projects'},
       { name: 'Blog', path: '/blog' },
+      { name: 'Contact', path: '/contact' }
     ];
 
   return (

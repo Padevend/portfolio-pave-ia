@@ -9,8 +9,10 @@ import {
 import projects from "@/data/projects.json";
 import TechHeader from "@/components/sections/techHeader";
 import ProjectNode from "@/components/ui/projectNode";
+import { useNavigate } from "react-router-dom";
 
 export const ProjectsPage: React.FC = () => {
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "Projects - MBAH-NDAM TSOMELOU Pavel";
@@ -72,7 +74,7 @@ export const ProjectsPage: React.FC = () => {
             </div>
           </div>
 
-          <button className="group flex items-center gap-4 px-10 py-5 bg-slate-900 text-white text-[10px] font-black uppercase tracking-[0.3em] hover:bg-blue-600 transition-all rounded-xl shadow-xl shadow-slate-200">
+          <button onClick={()=>navigate("/contact")} className="group flex items-center gap-4 px-10 py-5 bg-slate-900 text-white text-[10px] font-black uppercase tracking-[0.3em] hover:bg-blue-600 transition-all rounded-xl shadow-xl shadow-slate-200">
             Initialiser_Collaborateur
             <Crosshair
               size={14}

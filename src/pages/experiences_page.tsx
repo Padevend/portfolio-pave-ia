@@ -3,8 +3,11 @@ import { motion } from "framer-motion";
 import { Briefcase, Building2, ExternalLink, Milestone } from "lucide-react";
 import HeaderBanner from "@/components/ui/headerBanner";
 import experiences from "@/data/experiences.json";
+import { useNavigate } from "react-router-dom";
 
 export const ExperiencePage: React.FC = () => {
+  const navigate = useNavigate();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -21,6 +24,7 @@ export const ExperiencePage: React.FC = () => {
       transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
     },
   };
+  
 
   useEffect(() => {
     document.title = "Experiences - MBAH-NDAM TSOMELOU Pavel";
@@ -169,6 +173,7 @@ export const ExperiencePage: React.FC = () => {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={()=>navigate("/contact")}
                     className="px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl shadow-xl shadow-blue-900/40 flex items-center gap-3 hover:bg-blue-500 transition-colors"
                   >
                     CONTACT_SYSTEM.init()

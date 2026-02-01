@@ -175,14 +175,14 @@ export const Hero = () => {
             className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start items-center"
           >
             <a
-              href="#projects"
+              href="/projects"
               className="group relative flex items-center gap-3 px-8 py-4 bg-blue-600 text-white font-bold rounded-xl overflow-hidden transition-all hover:bg-blue-700 shadow-lg shadow-blue-200"
             >
               <Code2
                 size={20}
                 className="group-hover:rotate-12 transition-transform"
               />
-              <span className="relative z-10 text-sm">Initialiser Projets</span>
+              <span className="relative z-10 text-sm">ls /projets</span>
               <ArrowRight
                 className="group-hover:translate-x-2 transition-transform"
                 size={18}
@@ -190,7 +190,7 @@ export const Hero = () => {
             </a>
 
             <a
-              href="#contact"
+              href="/contact"
               className="group flex items-center gap-2 px-8 py-4 text-slate-700 font-medium border border-slate-200 rounded-xl hover:bg-white hover:border-blue-400 transition-all shadow-sm text-sm"
             >
               <Terminal size={16} className="text-blue-500" />
