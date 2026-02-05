@@ -16,22 +16,6 @@
     "link": "https://glchcommunity.online/"
   },
   {
-    "title": "TelePost",
-    "description":
-      "Blog with an integrated content manager for the publication of posts by each user, practical application of web development with Python.",
-    "tags": ["Python", "Django", "Javascript", "HTML", "CSS", "SQLite"],
-    "image": "/placeholder.svg",
-    "github": "https://github.com/Padevend/Postblog"
-  },
-  {
-    "title": "GLCH card payement",
-    "description":
-      "Subscription interface to a 1-year plan on the membership card as a member of the GLCH health community with integrated payment via Mobile Money.",
-    "tags": ["ReactJS", "node.js", "Tailwind", "Mobile payment", "Google Sheets"],
-    "image": "/placeholder.svg",
-    "link": "https://glchcommmunitycard.netlify.app/"
-  },
-  {
     "title": "Validix - JS",
     "description":
       "A fast, vanilla JS form validator designed for quick use in projects, eliminating the need for complex and often difficult-to-implement frameworks.",
@@ -39,5 +23,12 @@
     "image":
       "/placeholder.svg",
     "github": "https://github.com/Padevend/Validix.git"
+  },
+  {
+    "title": "Learn Machine Learning",
+    "description": "Write machine learning algorithms, from the most basic to the most advanced, from scratch to grasp the mathematical essence behind the performance of AI tools.",
+    "tags": ["ML", "Artificial Intelligence", "Mathematics", "Optimization", "Algorithmic", "Python", "Jupyter"],
+    "image": "/projects/ml_learn.jpg",
+    "github": "https://github.com/Padevend/ml-from-scratch"
   }
 ]

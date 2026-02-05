@@ -20,7 +20,7 @@ interface Article {
   date: string;
 }
 
-const articles: Article[] = BlogController.getAllArticles();
+const articles: Article[] = BlogController.getAllArticles({ order: "asc" });
 
 export const Blog: React.FC = () => {
   const navigate = useNavigate();

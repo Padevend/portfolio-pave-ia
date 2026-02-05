@@ -1,4 +1,4 @@
-# Régression Linéaire — Documentation Complète
+# Régression Linéaire
 
 > 📦 Projet source : [ml-from-scratch / regression_lineaire](https://github.com/Padevend/ml-from-scratch/tree/main/regression_lineaire)
 
