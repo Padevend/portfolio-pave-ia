@@ -14,7 +14,7 @@ import {
 import MarkdownRenderer from "@/components/ui/markdwonRenderer";
 import BlogController from "@/utils/article_controllers";
 import { share_link } from "@/utils/helpers";
-import { useSEO } from "@/hooks/useSeo";
+import { defineSEO } from "@/hooks/useSeo";
 
 
 export const ArticlePage: React.FC = () => {
@@ -38,7 +38,7 @@ export const ArticlePage: React.FC = () => {
     const found = BlogController.getArticleById(id || "");
 
     if (!found) {
-      useSEO({
+      defineSEO({
         title: "Not Fount",
         description: "Article introuvable"
       })
@@ -47,7 +47,7 @@ export const ArticlePage: React.FC = () => {
       return;
     }
     setArticle(found);
-    useSEO({
+    defineSEO({
       title: found.title,
       description: found.short_desc
     })
@@ -57,6 +57,14 @@ export const ArticlePage: React.FC = () => {
         found.content_path,
       );
       setHtmlContent(content);
+
+
+      const recent_articles: Article[] = BlogController.getAllArticles({
+        order: "asc",
+        limit: 3,
+        exclude: [`${id}`]
+      });
+      setRecentArticle(recent_articles)
     } catch (err) {
       setError("Échec du chargement du contenu.");
     } finally {
@@ -66,12 +74,6 @@ export const ArticlePage: React.FC = () => {
 
   useEffect(() => {
     loadContent();
-    const recent_articles: Article[] = BlogController.getAllArticles({
-      order: "asc",
-      limit: 3,
-      exclude: [`${id}`]
-    });
-    setRecentArticle(recent_articles)
 
     window.scrollTo(0, 0);
   }, [id]);
