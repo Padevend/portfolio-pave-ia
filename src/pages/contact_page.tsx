@@ -170,7 +170,7 @@ export const Contact: React.FC = () => {
                   <div className="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-blue-600">
                     <Phone size={14} />
                   </div>
-                  <span className="text-slate-600">+237 659 155 723</span>
+                  <span className="text-slate-600">+237 671 941 782</span>
                 </div>
                 <div className="flex items-center gap-4 text-xs font-mono">
                   <div className="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-blue-600">
