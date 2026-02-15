@@ -1,5 +1,13 @@
 [
   {
+    "title": "ML: Naives Bayes Classifier",
+    "tags": ["Machine Learning", "Python", "Probabilites", "Algorithmic"],
+    "short_desc": "modèle probabiliste simple supposant l'indépendance conditionnelle des caractéristiques, efficace et rapide pour la classification (notamment de textes).",
+    "slug": "ml-naives-bayes",
+    "content_path": "/docs/naives_bayes.md",
+    "date": "2026-02-15"
+  },
+  {
     "title": "ML: K-Nearest Neighbors",
     "tags": ["Machine Learning", "Python", "Mathematics"],
     "short_desc": "Une introduction pratique à l'algorithme des k-plus proches voisins (KNN) : principes, choix d'hyperparamètres et exemples en Python.",
