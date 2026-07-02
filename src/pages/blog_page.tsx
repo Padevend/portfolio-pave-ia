@@ -1,16 +1,9 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import {
-  Search, 
-  Calendar, 
-  Layers,
-  Sparkles,
-  ArrowUpRight
-} from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Search, Calendar, ArrowUpRight, Inbox, BookOpen } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import BlogController from "@/utils/article_controllers";
 
-// Interface pour nos articles
+// Interface stricte respectée à la lettre
 interface Article {
   title: string;
   tags: string[];
@@ -26,129 +19,147 @@ export const Blog: React.FC = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredArticles = articles.filter(article => 
-    article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    article.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+  useEffect(() => {
+    document.title = "Écrits & Perspectives — Pavel Mbah-Ndam";
+  }, []);
+
+  const filteredArticles = articles.filter(
+    (article) =>
+      article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      article.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
   return (
-    <section className="min-h-screen bg-[#f8fafc] py-32 px-6 font-sans relative overflow-hidden">
-      {/* Background Decor */}
-      <div className="absolute inset-0 opacity-40 pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:50px_50px]" />
+    <section className="min-h-screen bg-white text-neutral-900 pt-40 pb-24 px-6 lg:px-24 font-sans antialiased selection:bg-blue-600 selection:text-white">
+      
+      {/* ─── COUTURES ARCHITECTURALES ─── */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute top-0 bottom-0 left-1/4 w-[1px] bg-neutral-100/60 hidden lg:block" />
+        <div className="absolute top-0 bottom-0 left-3/4 w-[1px] bg-neutral-100/60 hidden lg:block" />
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Page Header */}
-        <div className="mb-16">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 text-blue-600 font-mono text-[10px] tracking-[0.3em] uppercase mb-4"
-          >
-            <div className="w-8 h-[1px] bg-blue-600" />
-            Knowledge_Base_Access
-          </motion.div>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter"
-            >
-              INSIGHTS <span className="text-blue-600">&</span> LOGS.
-            </motion.h1>
-            
-            {/* Search Bar Terminal Style */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="relative w-full md:w-80"
-            >
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
-              <input 
-                type="text" 
-                placeholder="RECHERCHER_DATA..."
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        {/* ─── DISPOSITION EN GRILLE SPLITÉE (SIDEBAR + STREAM) ─── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* COLONNE GAUCHE STATIQUE : RECHERCHE & INTENTION EDITORIALE (4 Colonnes) */}
+          <div className="lg:col-span-4 lg:sticky lg:top-32 space-y-8">
+            <div className="space-y-3">
+              <div className="inline-flex items-center gap-2.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,1)]" />
+                <span className="text-[10px] font-medium tracking-[0.3em] uppercase text-neutral-400">
+                  04 / Écrits & Réflexions
+                </span>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-light tracking-tight text-neutral-950 uppercase leading-none">
+                Insights <br />
+                <span className="font-serif italic text-neutral-400 normal-case">& Notes.</span>
+              </h1>
+            </div>
+
+            <p className="text-neutral-500 text-xs font-light leading-relaxed max-w-sm">
+              Partage d'expériences logicielles, d'analyses architecturales et de réflexions sur la tech face aux enjeux du continent africain.
+            </p>
+
+            {/* Barre de Recherche Épurée Style Galerie */}
+            <div className="relative w-full max-w-sm flex items-center bg-neutral-50/50 border border-neutral-200/80 rounded-none">
+              <Search className="text-neutral-400 ms-3" size={16} />
+              <input
+                type="text"
+                placeholder="Rechercher une note ou un mot-clé..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-white border border-slate-200 rounded-2xl py-4 pl-12 pr-6 text-xs font-mono focus:outline-none focus:border-blue-500/50 shadow-sm transition-all"
+                className="w-full py-3.5 px-4 text-xs tracking-wide focus:outline-none focus:border-blue-600 focus:bg-white transition-all duration-300"
               />
-            </motion.div>
+            </div>
+          </div>
+
+          {/* COLONNE DROITE DYNAMIQUE : LE FLUX DES ARTICLES (8 Colonnes) */}
+          <div className="lg:col-span-8 border-t border-neutral-100 lg:border-t-0">
+            
+            {filteredArticles.length > 0 ? (
+              <div className="divide-y divide-neutral-100">
+                {filteredArticles.map((article, idx) => {
+                  const formattedIndex = String(idx + 1).padStart(2, "0");
+                  
+                  return (
+                    <article
+                      key={article.slug}
+                      onClick={() => navigate(`/blog/${article.slug}`)}
+                      className="group/article cursor-pointer py-10 first:pt-0 last:pb-0 flex flex-col md:flex-row items-start gap-6 md:gap-10 transition-all duration-500 ease-in-out hover:bg-neutral-50/40 px-2 -mx-2 border-none"
+                    >
+                      {/* Métadonnées et Indexation de la ligne */}
+                      <div className="flex md:flex-col items-center md:items-start justify-between w-full md:w-24 shrink-0 font-mono text-[10px] tracking-widest text-neutral-500">
+                        <span className="text-neutral-400 group-hover/article:text-blue-600 font-medium transition-colors duration-500">
+                          N° {formattedIndex}
+                        </span>
+                        <span className="flex items-center gap-1.5 md:mt-2">
+                          <Calendar size={11} className="text-neutral-300" />
+                          {article.date}
+                        </span>
+                      </div>
+
+                      {/* Corps éditorial de l'article */}
+                      <div className="space-y-3 flex-1">
+                        <div className="flex items-start justify-between gap-4">
+                          <h2 className="text-lg font-medium text-neutral-950 uppercase tracking-wide group-hover/article:text-blue-600 transition-colors duration-500 leading-snug">
+                            {article.title}
+                          </h2>
+                          <ArrowUpRight 
+                            size={16} 
+                            className="text-neutral-300 group-hover/article:text-blue-600 group-hover/article:translate-x-0.5 group-hover/article:-translate-y-0.5 transition-all duration-500 shrink-0" 
+                          />
+                        </div>
+
+                        <p className="text-neutral-500 text-xs font-light leading-relaxed max-w-2xl">
+                          {article.short_desc}
+                        </p>
+
+                        {/* Flux de tags */}
+                        <div className="flex flex-wrap gap-2 pt-2">
+                          {article.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="text-[9px] font-mono tracking-wider text-neutral-400 uppercase bg-neutral-50 px-2 py-0.5 border border-neutral-100/60"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            ) : (
+              /* ÉTAT VIDE (EMPTY STATE) SOIGNÉ */
+              <div className="py-24 text-center border border-dashed border-neutral-200 bg-neutral-50/20 max-w-xl mx-auto lg:mt-6">
+                <Inbox className="mx-auto text-neutral-300 mb-4" size={40} strokeWidth={1.2} />
+                <h3 className="text-sm font-medium text-neutral-950 uppercase tracking-wider">Aucune note trouvée</h3>
+                <p className="text-neutral-400 text-xs font-light mt-1 max-w-xs mx-auto">
+                  La recherche pour "{searchTerm}" n'a retourné aucun article correspondant dans nos registres.
+                </p>
+              </div>
+            )}
+
           </div>
         </div>
 
-        {/* Articles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredArticles.map((article, idx) => (
-            <motion.div
-              key={article.slug}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1 }}
-              whileHover={{ y: -10 }}
-              onClick={() => navigate(`/blog/${article.slug}`)}
-              className="group cursor-pointer bg-white border border-slate-200 rounded-[2rem] p-8 shadow-xl shadow-slate-200/50 hover:shadow-blue-500/10 transition-all relative overflow-hidden"
-            >
-              {/* Card Index Decor */}
-              <div className="absolute top-0 right-0 p-6 flex flex-col items-end opacity-20 group-hover:opacity-100 transition-opacity">
-                <span className="text-[10px] font-mono font-bold text-blue-600">ID: 0{idx + 1}</span>
-                <ArrowUpRight size={20} className="text-blue-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </div>
-
-              {/* Meta Info */}
-              <div className="flex items-center gap-4 text-[10px] font-mono text-slate-400 mb-6 uppercase tracking-widest">
-                <span className="flex items-center gap-1.5"><Calendar size={12} /> {article.date}</span>
-              </div>
-
-              <h2 className="text-2xl font-black text-slate-900 mb-4 group-hover:text-blue-600 transition-colors leading-tight">
-                {article.title}
-              </h2>
-
-              <p className="text-slate-500 text-sm leading-relaxed mb-8 line-clamp-3 font-light">
-                {article.short_desc}
-              </p>
-
-              {/* Tags Section */}
-              <div className="flex flex-wrap gap-2 mt-auto">
-                {article.tags.map(tag => (
-                  <span 
-                    key={tag} 
-                    className="px-3 py-1 bg-slate-50 border border-slate-100 rounded-full text-[9px] font-mono font-bold text-slate-500 uppercase tracking-tighter"
-                  >
-                    #{tag.replace(" ", "_")}
-                  </span>
-                ))}
-              </div>
-
-              {/* Hover Effect Layer */}
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Empty State */}
-        {filteredArticles.length === 0 && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="py-40 text-center"
-          >
-            <Layers className="mx-auto text-slate-200 mb-6" size={64} />
-            <h3 className="text-xl font-bold text-slate-900">AUCUN_RÉSULTAT_TROUVÉ</h3>
-            <p className="text-slate-400 text-sm font-mono mt-2">La requête "{searchTerm}" n'a retourné aucune correspondance dans le noyau.</p>
-          </motion.div>
-        )}
-
-        {/* Footer Metrics */}
-        <div className="mt-20 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-mono text-slate-400 uppercase tracking-widest">
+        {/* ─── COMPTEURS ET MÉTADONNÉES DE PIED DE PAGE ─── */}
+        <div className="mt-28 pt-8 border-t border-neutral-100 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] font-mono tracking-widest text-neutral-400 uppercase font-medium">
           <div className="flex items-center gap-6">
-            <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-green-500" /> Database_Connected</span>
-            <span>Articles_Total: {articles.length}</span>
+            <span className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Indexation synchronisée
+            </span>
+            <span>Publications totales : {articles.length}</span>
           </div>
-          <div className="flex items-center gap-2 italic">
-            <Sparkles size={12} className="text-blue-400" />
-            Synthesized_by_Pavel.AI
+          <div className="flex items-center gap-2 text-neutral-400 font-light">
+            <BookOpen size={11} />
+            <span>Pavel Mbah-Ndam — Édition 2026</span>
           </div>
         </div>
+
       </div>
     </section>
   );

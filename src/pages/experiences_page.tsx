@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { motion } from "framer-motion";
-import { Briefcase, Building2, ExternalLink, Milestone } from "lucide-react";
+import { Building2, ArrowUpRight, Briefcase, Calendar } from "lucide-react";
 import HeaderBanner from "@/components/ui/headerBanner";
 import experiences from "@/data/experiences.json";
 import { useNavigate } from "react-router-dom";
@@ -8,181 +7,156 @@ import { useNavigate } from "react-router-dom";
 export const ExperiencePage: React.FC = () => {
   const navigate = useNavigate();
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 100,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-    },
-  };
-  
-
   useEffect(() => {
-    document.title = "Experiences - MBAH-NDAM TSOMELOU Pavel";
-
+    document.title = "Parcours — Pavel Mbah-Ndam";
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="min-h-screen bg-white text-neutral-900 font-sans antialiased selection:bg-blue-600 selection:text-white">
+      
+      {/* BANNER DE PAGE STYLE STUDIO GRAPHIQUE */}
       <HeaderBanner
-        tag="Parcours Professionnel"
-        title="EXPÉRIENCES RÉCENTES"
-        subtitle="Work_History // Career_Growth // Innovations"
+        tag="03 / Chronologie"
+        title="PARCOURS PRO"
+        subtitle="Rétrospective des déploiements techniques et des contributions stratégiques."
         breadcrumb={[{ label: "Accueil", path: "/" }, { label: "Expériences" }]}
       />
 
-      {/* MAIN CONTENT */}
-      <section className="relative py-12 px-6">
+      {/* CONTENU PRINCIPAL */}
+      <section className="relative py-20 px-6 lg:px-24 overflow-hidden">
+        
+        {/* LIGNES DE GUIDAGE VERTICALES */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute top-0 bottom-0 left-1/4 w-[1px] bg-neutral-100/60 hidden lg:block" />
+          <div className="absolute top-0 bottom-0 left-3/4 w-[1px] bg-neutral-100/60 hidden lg:block" />
+        </div>
+
         <div className="max-w-5xl mx-auto relative z-10">
-          <motion.div
-            variants={containerVariants as any}
-            viewport={{ once: true}}
-          >
-            {/* Page Intro Sub-Header */}
-            <motion.div
-              variants={itemVariants as any}
-              className="flex flex-col items-center mb-24 text-center"
-            >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-200 bg-blue-50/30 text-blue-600 text-[10px] font-bold uppercase tracking-widest mb-4">
-                <Milestone size={12} />
-                Professional_Log_v4.2
-              </div>
-              <p className="max-w-xl text-slate-500 font-light">
-                Une progression constante à travers des projets ambitieux,
-                alliant rigueur technique et vision stratégique.
-              </p>
-            </motion.div>
+          
+          {/* EN-TÊTE DE SECTION MINI-MALISTE */}
+          <div className="flex flex-col items-start lg:items-center text-left lg:text-center mb-28 max-w-xl mx-auto space-y-4">
+            <div className="inline-flex items-center gap-2.5 text-[10px] uppercase tracking-[0.3em] text-neutral-400 font-medium">
+              <span>Annales de Réalisations</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,1)]" />
+            </div>
+            <p className="text-neutral-500 text-base font-light leading-relaxed">
+              Une progression rigoureuse marquée par la conception de briques logicielles complexes et la direction technique d'architectures applicatives scalables.
+            </p>
+          </div>
 
-            {/* Timeline Wrapper */}
-            <div className="relative">
-              {/* Central Line - Light Design */}
-              <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-slate-100 transform md:-translate-x-1/2 overflow-hidden">
-                <motion.div
-                  initial={{ height: 0 }}
-                  whileInView={{ height: "100%" }}
-                  transition={{ duration: 1.5, ease: "easeInOut" }}
-                  className="w-full bg-gradient-to-b from-blue-500 via-blue-200 to-transparent"
-                />
-              </div>
+          {/* CONTENEUR DE LA TIMELINE */}
+          <div className="relative">
+            
+            {/* Ligne d'ancrage centrale (Fine couture de repère) */}
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-neutral-200/80 transform md:-translate-x-1/2 z-0" />
 
-              {/* Items */}
-              <div className="space-y-24">
-                {experiences.map((exp, index) => (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants as any}
-                    className={`relative md:flex items-center justify-between gap-12 ${
-                      index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+            {/* LISTE DES EXPÉRIENCES */}
+            <div className="space-y-20 relative z-10">
+              {experiences.map((exp, index) => (
+                <div
+                  key={index}
+                  className={`group/item relative flex flex-col md:flex-row items-stretch justify-between gap-8 md:gap-16 ${
+                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                  }`}
+                >
+                  
+                  {/* LE POINT CHRONOLOGIQUE : S'allume en bleu royal intense au survol de la ligne */}
+                  <div className="absolute left-4 md:left-1/2 top-8 w-3 h-3 -ml-[5px] md:-translate-x-1/2 flex items-center justify-center z-30">
+                    <div className="w-2.5 h-2.5 rounded-full bg-white border border-neutral-300 transition-all duration-500 ease-in-out group-hover/item:border-blue-600 group-hover/item:bg-blue-600 group-hover/item:scale-125 group-hover/item:shadow-[0_0_15px_rgba(37,99,235,0.8)]" />
+                  </div>
+
+                  {/* COLONNE DATE / PÉRIODE (DESKTOP) */}
+                  <div
+                    className={`hidden md:flex flex-col justify-top pt-6 w-1/2 ${
+                      index % 2 === 0 ? "text-right pr-12" : "text-left pl-12"
                     }`}
                   >
-                    {/* Timeline Point */}
-                    <div className="absolute left-0 md:left-1/2 top-0 md:top-1/2 w-8 h-8 -ml-4 md:-translate-y-1/2 flex items-center justify-center z-20">
-                      <div className="w-4 h-4 rounded-full bg-white border-2 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
-                      <div
-                        className="absolute w-12 h-px bg-blue-100 hidden md:block"
-                        style={{ [index % 2 === 0 ? "right" : "left"]: "100%" }}
-                      />
+                    <div className="text-[11px] font-mono tracking-[0.2em] text-neutral-400 uppercase font-medium transition-colors duration-500 group-hover/item:text-blue-600 flex items-center gap-2 justify-end group-hover/item:translate-x-0 transition-transform">
+                      {index % 2 === 0 && <span>{exp.period}</span>}
+                      <Calendar size={11} className="text-neutral-300 group-hover/item:text-blue-600 transition-colors" />
+                      {index % 2 !== 0 && <span>{exp.period}</span>}
                     </div>
+                    <span className="text-[9px] font-mono tracking-widest text-neutral-200 uppercase mt-1">
+                      Ref_Index_0{index + 1}
+                    </span>
+                  </div>
 
-                    {/* Date / Period Tag */}
-                    <div
-                      className={`hidden md:block w-1/2 ${index % 2 === 0 ? "text-right pr-16" : "text-left pl-16"}`}
-                    >
-                      <div className="font-mono text-[10px] text-blue-600 font-bold tracking-widest uppercase mb-1">
-                        {exp.period}
-                      </div>
-                      <div className="text-[10px] text-slate-300 font-mono tracking-tighter">
-                        TIMESTAMP_{index}_STABLE
-                      </div>
-                    </div>
-
-                    {/* Card Content */}
-                    <div className="ml-10 md:ml-0 md:w-1/2 relative">
-                      <motion.div
-                        whileHover={{ y: -5, scale: 1.02 }}
-                        className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 hover:border-blue-100 transition-all duration-500"
-                      >
-                        <div className="flex items-start justify-between mb-6">
+                  {/* CARTE DE L'EXPÉRIENCE */}
+                  <div className="pl-12 md:pl-0 md:w-1/2">
+                    <div className="bg-white border border-neutral-200/70 p-8 transition-all duration-500 ease-in-out hover:border-neutral-300 hover:bg-neutral-50/40 hover:-translate-y-1 flex flex-col h-full justify-between">
+                      
+                      <div>
+                        {/* En-tête de carte */}
+                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-6">
                           <div>
-                            <h3 className="text-xl font-black text-slate-900 tracking-tight leading-none group-hover:text-blue-600 transition-colors">
+                            <h3 className="text-base font-medium text-neutral-950 uppercase tracking-wider">
                               {exp.title}
                             </h3>
-                            <div className="flex items-center gap-2 mt-2 text-blue-500 font-bold text-sm tracking-tight">
-                              <Building2 size={14} />
-                              {exp.company}
+                            <div className="inline-flex items-center gap-1.5 mt-1.5 text-neutral-400 font-mono text-xs uppercase tracking-wider">
+                              <Building2 size={12} strokeWidth={1.5} />
+                              <span className="transition-colors duration-500 group-hover/item:text-neutral-900">{exp.company}</span>
                             </div>
                           </div>
-                          <div className="md:hidden font-mono text-[9px] text-slate-400">
+                          {/* Période visible uniquement sur Mobile */}
+                          <div className="md:hidden inline-block font-mono text-[10px] text-neutral-400 uppercase tracking-wider mt-1">
                             {exp.period}
                           </div>
                         </div>
 
-                        <p className="text-slate-500 text-sm leading-relaxed mb-6 font-light">
+                        {/* Description textuelle */}
+                        <p className="text-neutral-500 text-xs font-light leading-relaxed mb-8">
                           {exp.description}
                         </p>
+                      </div>
 
-                        <div className="flex flex-wrap gap-2">
-                          {exp.highlights.map((tag) => (
-                            <span
-                              key={tag}
-                              className="px-3 py-1 bg-slate-50 text-slate-600 rounded-lg text-[10px] font-bold uppercase tracking-wider border border-slate-100"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </motion.div>
+                      {/* Faits marquants / Technologies utilisées */}
+                      <div className="flex flex-wrap gap-2 pt-4 border-t border-neutral-100">
+                        {exp.highlights.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2.5 py-1 bg-neutral-50 border border-neutral-100 text-neutral-500 text-[10px] uppercase tracking-wider font-medium transition-colors duration-300 hover:border-blue-600/20 hover:text-neutral-900"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
                     </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Bottom Contact / CTA */}
-            <motion.div
-              variants={itemVariants as any}
-              className="mt-32 p-1 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-transparent rounded-[3rem]"
-            >
-              <div className="bg-slate-900 rounded-[2.8rem] p-10 md:p-16 relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-10 opacity-5">
-                  <Briefcase size={200} className="text-white" />
-                </div>
-
-                <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
-                  <div className="max-w-xl">
-                    <h3 className="text-3xl font-bold text-white mb-4 tracking-tight">
-                      Prêt pour de nouveaux{" "}
-                      <span className="text-blue-400 italic">Défis</span> ?
-                    </h3>
-                    <p className="text-slate-400 font-light leading-relaxed">
-                      Je suis toujours ouvert à discuter de projets innovants ou
-                      d'opportunités de collaboration technique. Initialisons
-                      une connexion.
-                    </p>
                   </div>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={()=>navigate("/contact")}
-                    className="px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl shadow-xl shadow-blue-900/40 flex items-center gap-3 hover:bg-blue-500 transition-colors"
-                  >
-                    CONTACT_SYSTEM.init()
-                    <ExternalLink size={18} />
-                  </motion.button>
+
                 </div>
+              ))}
+            </div>
+          </div>
+
+          {/* SECTION DE CLÔTURE ET DE SÉCURISATION DES JALONS (CTA EN ENCRE NOIRE) */}
+          <div className="mt-36 relative overflow-hidden bg-neutral-950 text-neutral-400 p-8 md:p-16 border border-neutral-900 group/cta">
+            
+            {/* Halo de lumière Bleu Royal masqué, magnifié au survol */}
+            <div className="absolute -right-20 -bottom-20 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none opacity-40 group-hover/cta:opacity-100 transition-opacity duration-1000" />
+            
+            <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
+              <div className="max-w-xl space-y-4">
+                <div className="flex items-center gap-3">
+                  <Briefcase className="text-neutral-700 group-hover/cta:text-blue-500 transition-colors duration-500" size={16} />
+                  <h3 className="text-sm font-medium text-white uppercase tracking-[0.25em]">Ouverture aux défis</h3>
+                </div>
+                <p className="text-neutral-400 text-lg font-light leading-relaxed">
+                  Je reste continuellement réceptif à l'étude d'écosystèmes ambitieux et de <span className="text-white font-normal transition-colors duration-500 group-hover/cta:text-blue-400">collaborations à forte valeur technologique</span>. Initialisons l'échange.
+                </p>
               </div>
-            </motion.div>
-          </motion.div>
+
+              <button
+                onClick={() => navigate("/contact")}
+                className="group flex items-center justify-center gap-4 px-8 py-4 bg-white text-neutral-950 font-medium text-xs uppercase tracking-widest transition-all duration-300 hover:bg-blue-600 hover:text-white hover:shadow-[0_4px_25px_rgba(37,99,235,0.3)] w-full lg:w-auto shrink-0"
+              >
+                <span>Ouvrir la connexion</span>
+                <ArrowUpRight className="text-neutral-400 group-hover:text-white transition-colors duration-300" size={14} />
+              </button>
+            </div>
+          </div>
+
         </div>
       </section>
     </div>

@@ -1,88 +1,77 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import {
-  Mail, 
-  Phone, 
-  MapPin, 
-  Terminal, 
-  Cpu, 
-  ShieldCheck, 
-  Github, 
-  Linkedin,
-  Activity
-} from 'lucide-react';
+import { Linkedin, Github, Mail, Phone, MapPin } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
+  const currentYear = 2026; // Mis à jour pour l'année en cours
 
   const navLinks = [
-      { name: 'Accueil', path: '/'},
-      { name: 'Skills', path: '/skills'},
-      { name: 'Expériences', path: '/experiences' },
-      { name: 'Projets', path: '/projects'},
-      { name: 'Blog', path: '/blog' },
-      { name: 'Contact', path: '/contact' }
-    ];
+    { name: 'Accueil', path: '/' },
+    { name: 'Expertise', path: '/skills' },
+    { name: 'Expériences', path: '/experiences' },
+    { name: 'Projets', path: '/projects' },
+    { name: 'Blog', path: '/blog' },
+    { name: 'Contact', path: '/contact' }
+  ];
 
   return (
-    <footer className="relative bg-[#020617] text-white pt-24 pb-12 px-6 overflow-hidden border-t border-blue-500/10">
-      {/* Background Tech Elements */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:40px_40px]" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
+    <footer className="relative bg-neutral-950 text-neutral-400 pt-24 pb-12 px-6 lg:px-24 overflow-hidden border-t border-neutral-900">
+      
+      {/* L'INTENTION : LA LUMIÈRE BLEUE DANS UN MONDE SANS COULEUR */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Halo Bleu Royal unique et immersif en arrière-plan */}
+        <div className="absolute top-[-100px] left-1/4 w-[350px] h-[350px] bg-blue-600/15 rounded-full blur-[100px]" />
+        
+        {/* Lignes de structure minimalistes */}
+        <div className="absolute top-0 bottom-0 left-1/3 w-[1px] bg-neutral-900/40 hidden lg:block" />
+        <div className="absolute top-0 bottom-0 left-2/3 w-[1px] bg-neutral-900/40 hidden lg:block" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20"
-        >
-          {/* Brand & AI Status */}
-          <div className="md:col-span-5">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-blue-600/10 border border-blue-500/30 rounded-lg flex items-center justify-center">
-                <Cpu className="text-blue-400" size={20} />
-              </div>
-              <h3 className="text-2xl font-black tracking-tighter uppercase">
-                PAVEL<span className="text-blue-500">.AI</span>
-              </h3>
+        
+        {/* GRILLE PRINCIPALE */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 mb-20">
+          
+          {/* Bloc Marque & Signature */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="flex flex-col tracking-widest group">
+              {/* Le point bleu royal perçant comme repère visuel unique */}
+              <span className="text-lg font-bold uppercase text-white flex items-center gap-2">
+                P. Mbah-Ndam
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-600 shadow-[0_0_12px_rgba(37,99,235,1)]" />
+              </span>
+              <span className="text-[10px] uppercase text-neutral-500 tracking-[0.25em] font-light mt-1">
+                Direction Digitale & Design
+              </span>
             </div>
-            <p className="text-slate-400 font-mono text-sm leading-relaxed max-w-sm mb-8">
-              Développeur Full-Stack spécialisé dans la conception d'architectures numériques 
-              <span className="text-white"> haute performance</span> et d'interfaces intelligentes.
+            
+            <p className="text-neutral-400 text-sm font-light leading-relaxed max-w-sm">
+              Création d'écosystèmes numériques haut de gamme, de plateformes sur-mesure et d'expériences utilisateur mémorables.
             </p>
             
-            <div className="flex items-center gap-6">
-               <div className="flex flex-col">
-                  <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-1">Status</span>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                    <span className="text-[11px] font-mono text-blue-400 tracking-tighter italic">NODE_STABLE_V4</span>
-                  </div>
-               </div>
-               <div className="flex flex-col">
-                  <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-1">Region</span>
-                  <span className="text-[11px] font-mono text-white tracking-tighter italic">CENTRAL_AFRICA_NODE</span>
-               </div>
+            <div className="pt-2 flex items-center gap-8 text-xs uppercase tracking-widest text-neutral-500">
+              <div>
+                <span className="block text-[9px] text-neutral-600 mb-1">Localisation</span>
+                <span className="text-neutral-300 font-light">Cameroun</span>
+              </div>
+              <div>
+                <span className="block text-[9px] text-neutral-600 mb-1">Influence</span>
+                <span className="text-neutral-300 font-light">International</span>
+              </div>
             </div>
           </div>
 
-          {/* Quick Links Interface */}
-          <div className="md:col-span-3">
-            <div className="flex items-center gap-2 mb-6 text-blue-500 font-mono text-[10px] uppercase tracking-[0.3em]">
-               <Terminal size={12} /> Navigation_Paths
-            </div>
-            <ul className="space-y-3 font-mono text-xs uppercase tracking-wider">
+          {/* Liens de Navigation Épurés */}
+          <div className="lg:col-span-3 lg:pl-12">
+            <h3 className="text-white text-xs font-medium uppercase tracking-[0.2em] mb-6">
+              Navigation
+            </h3>
+            <ul className="space-y-3.5 text-xs uppercase tracking-wider">
               {navLinks.map((item, idx) => (
                 <li key={idx}>
                   <a
                     href={item.path}
-                    className="text-slate-400 hover:text-white flex items-center gap-2 transition-all group"
+                    className="text-neutral-500 hover:text-white transition-colors duration-300 flex items-center gap-2"
                   >
-                    <span className="w-0 group-hover:w-3 h-[1px] bg-blue-500 transition-all duration-300" />
                     {item.name}
                   </a>
                 </li>
@@ -90,66 +79,72 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Contact Node */}
-          <div className="md:col-span-4">
-            <div className="flex items-center gap-2 mb-6 text-blue-500 font-mono text-[10px] uppercase tracking-[0.3em]">
-               <Activity size={12} /> Contact_Encryption
-            </div>
-            <ul className="space-y-4 text-slate-400 font-mono text-xs">
-              <li className="flex items-start gap-4 p-3 border border-slate-800 rounded-xl hover:border-blue-500/30 transition-colors">
-                <Mail size={16} className="text-blue-500 shrink-0" />
-                <a href="mailto:mbpavel21@gmail.com" className="hover:text-white transition-colors">
-                  mbpavel21@gmail.com
+          {/* Informations de Contact Directes */}
+          <div className="lg:col-span-4">
+            <h3 className="text-white text-xs font-medium uppercase tracking-[0.2em] mb-6">
+              Iniciatives & Échanges
+            </h3>
+            <ul className="space-y-4 text-sm font-light">
+              <li>
+                <a 
+                  href="mailto:mbpavel21@gmail.com" 
+                  className="flex items-center gap-3 p-3 border border-neutral-900 bg-neutral-900/20 text-neutral-400 hover:text-white hover:border-neutral-800 transition-all duration-300 group"
+                >
+                  <Mail size={14} className="text-neutral-600 group-hover:text-blue-500 transition-colors duration-300" />
+                  <span>mbpavel21@gmail.com</span>
                 </a>
               </li>
-              <li className="flex items-start gap-4 p-3 border border-slate-800 rounded-xl hover:border-blue-500/30 transition-colors">
-                <Phone size={16} className="text-blue-500 shrink-0" />
-                <a href="tel:+237659155723" className="hover:text-white transition-colors">
-                  +237 671 941 782
+              <li>
+                <a 
+                  href="tel:+237671941782" 
+                  className="flex items-center gap-3 p-3 border border-neutral-900 bg-neutral-900/20 text-neutral-400 hover:text-white hover:border-neutral-800 transition-all duration-300 group"
+                >
+                  <Phone size={14} className="text-neutral-600 group-hover:text-blue-500 transition-colors duration-300" />
+                  <span>+237 671 941 782</span>
                 </a>
               </li>
-              <li className="flex items-start gap-4 p-3 border border-slate-800 rounded-xl">
-                <MapPin size={16} className="text-blue-500 shrink-0" />
-                <span>Cameroon, Central Africa Node</span>
+              <li className="flex items-center gap-3 p-3 border border-transparent text-neutral-500 select-none">
+                <MapPin size={14} className="text-neutral-700" />
+                <span>Yaoundé, Cameroun</span>
               </li>
             </ul>
           </div>
-        </motion.div>
-
-        {/* Divider with Scan Effect */}
-        <div className="relative h-px bg-slate-800 mb-8 overflow-hidden">
-           <motion.div 
-             animate={{ x: ['-100%', '100%'] }}
-             transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-             className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-transparent via-blue-500 to-transparent"
-           />
         </div>
 
-        {/* Bottom Metadata */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="flex flex-col md:flex-row justify-between items-center gap-6 text-slate-500 font-mono text-[10px] uppercase tracking-widest"
-        >
-          <div className="flex items-center gap-4">
-             <p>&copy; {currentYear} PAVEL MBAH-NDAM. SYS_ALL_RIGHTS_RESERVED.</p>
-             <div className="h-3 w-px bg-slate-800 hidden md:block" />
-             <div className="flex items-center gap-2">
-               <ShieldCheck size={12} className="text-blue-600" />
-               <span>SECURED_BY_ZEROTRACEX</span>
-             </div>
+        {/* LIGNE DE SÉPARATION MINIMALISTE */}
+        <div className="h-[1px] bg-neutral-900 mb-8 w-full" />
+
+        {/* METADONNÉES DE PIED DE PAGE */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-widest text-neutral-500 font-medium">
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-center md:text-left">
+            <p>&copy; {currentYear} Pavel Mbah-Ndam. Tous droits réservés.</p>
+            <span className="hidden md:inline text-neutral-800">|</span>
+            <p className="font-serif italic text-neutral-400 lowercase tracking-normal text-xs">
+              Conçu avec rigueur & clarté
+            </p>
           </div>
           
-          <div className="flex items-center gap-4">
-             <span className="text-blue-500 font-black italic">v4.0.2-Stable</span>
-             <div className="flex gap-4">
-                <a href="https://github.com/Padevend" className="hover:text-white transition-colors"><Github size={14} /></a>
-                <a href="#" className="hover:text-white transition-colors"><Linkedin size={14} /></a>
-             </div>
+          {/* Réseaux Sociaux Épurés */}
+          <div className="flex items-center gap-6">
+            <a 
+              href="https://github.com/Padevend" 
+              className="hover:text-white transition-colors duration-300 flex items-center gap-1"
+              aria-label="Github"
+            >
+              <Github size={14} />
+              <span>Github</span>
+            </a>
+            <a 
+              href="#" 
+              className="hover:text-white transition-colors duration-300 flex items-center gap-1"
+              aria-label="Linkedin"
+            >
+              <Linkedin size={14} />
+              <span>Linkedin</span>
+            </a>
           </div>
-        </motion.div>
+        </div>
+
       </div>
     </footer>
   );

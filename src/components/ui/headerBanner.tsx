@@ -1,12 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Cpu, 
-  Sparkles, 
-  ChevronRight,
-  Home
-} from 'lucide-react';
-
 
 interface HeaderBannerProps {
   tag: string;
@@ -17,74 +9,71 @@ interface HeaderBannerProps {
 
 const HeaderBanner: React.FC<HeaderBannerProps> = ({ tag, title, subtitle, breadcrumb }) => {
   return (
-    <div className="relative pt-32 pb-24 px-6 overflow-hidden bg-gray-50">
-      {/* Background IA Light Style */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(50%_50%_at_50%_0%,rgba(59,130,246,0.05)_0%,transparent_100%)]" />
-        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />
+    <div className="relative pt-40 pb-20 px-6 lg:px-24 overflow-hidden bg-white border-b border-neutral-100">
+      
+      {/* ─── COUTURES ARCHITECTURALES & HALO BLEU SUBTILE ─── */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Lignes de repère verticales identiques au Hero et aux pages */}
+        <div className="absolute top-0 bottom-0 left-1/4 w-[1px] bg-neutral-100/50 hidden lg:block" />
+        <div className="absolute top-0 bottom-0 left-3/4 w-[1px] bg-neutral-100/50 hidden lg:block" />
+        
+        {/* L'INTENTION : Aura Bleu Royal diffuse très légère en haut au centre */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-blue-600/[0.03] rounded-full blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col items-center text-center">
-          {/* Breadcrumb */}
-          <motion.nav 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-2 mb-8 text-[10px] font-mono tracking-widest text-slate-400 uppercase"
-          >
-            <Home size={10} className="text-blue-500" />
+        <div className="flex flex-col items-start text-left">
+          
+          {/* FIL D'ARIANE (BREADCRUMB) ET SIGNAL LUMINEUX */}
+          <nav className="flex items-center gap-2.5 mb-8 text-[10px] uppercase tracking-[0.3em] text-neutral-400 font-medium">
+            {/* Le point bleu perçant comme repère initial unique */}
+            <span className="h-1.5 w-1.5 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,1)] animate-pulse" />
+            
             {breadcrumb.map((item, idx) => (
               <React.Fragment key={idx}>
-                <ChevronRight size={10} className="opacity-30" />
-                <span className={idx === breadcrumb.length - 1 ? "text-blue-600 font-bold" : ""}>
-                  {item.label}
-                </span>
+                {idx > 0 && <span className="text-neutral-200 font-light">/</span>}
+                {item.path ? (
+                  <a 
+                    href={item.path} 
+                    className="hover:text-neutral-900 transition-colors duration-300"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <span className="text-neutral-900 font-semibold">{item.label}</span>
+                )}
               </React.Fragment>
             ))}
-          </motion.nav>
+          </nav>
 
-          {/* Tag */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-100 bg-blue-50/50 text-blue-600 text-[10px] font-bold uppercase tracking-[0.2em] mb-6 backdrop-blur-sm"
-          >
-            <Sparkles size={12} className="text-blue-400" />
-            {tag}
-          </motion.div>
+          {/* TITRE PRINCIPAL STYLE MAGAZINE */}
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light text-neutral-950 tracking-tight leading-[1.1] mb-6 max-w-4xl uppercase">
+            {/* Gestion sécurisée de la typographie combinée sans coupure brute du split */}
+            {title.includes(' ') ? (
+              <>
+                {title.substring(0, title.indexOf(' '))}{' '}
+                <span className="font-serif italic text-neutral-400 normal-case">
+                  {title.substring(title.indexOf(' ') + 1)}
+                </span>
+              </>
+            ) : (
+              title
+            )}
+          </h1>
 
-          {/* Title */}
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter mb-6"
-          >
-            {title.split(' ')[0]} <span className="text-blue-600 italic">{title.split(' ')[1]}</span>
-          </motion.h1>
+          {/* SOUS-TITRE / SOUS-EN-TÊTE ÉDITORIAL */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 pt-4 w-full border-t border-neutral-100 text-neutral-400">
+            <span className="text-[10px] uppercase tracking-[0.25em] font-medium text-neutral-900 shrink-0">
+              {tag}
+            </span>
+            <span className="hidden sm:inline h-3 w-[1px] bg-neutral-200" />
+            <p className="text-xs uppercase tracking-widest font-light font-mono text-neutral-400">
+              {subtitle}
+            </p>
+          </div>
 
-          {/* Subtitle */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="flex items-center gap-4 text-slate-400 font-mono text-xs uppercase tracking-[0.3em]"
-          >
-            <div className="h-[1px] w-8 bg-slate-200" />
-            {subtitle}
-            <div className="h-[1px] w-8 bg-slate-200" />
-          </motion.div>
         </div>
       </div>
-
-      {/* Decorative Elements */}
-      <motion.div 
-        animate={{ opacity: [0.2, 0.4, 0.2] }}
-        transition={{ duration: 4, repeat: Infinity }}
-        className="absolute top-10 right-10 text-blue-500/10 pointer-events-none"
-      >
-        <Cpu size={180} strokeWidth={0.5} />
-      </motion.div>
     </div>
   );
 };

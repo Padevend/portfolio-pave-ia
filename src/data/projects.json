@@ -1,33 +1,33 @@
 [
   {
-    "title": "Ticky - Event Manager",
+    "title": "Ticky - Gestionnaire d'événements",
     "description":
-      "All-in-one platform to create, organize and manage your professional events with an exceptional user experience and cutting-edge tools.",
-    "tags": ["ReactJS", "TypeScript", "Mobile payment", "AdonisJS", "PostgreSQL"],
+      "Plateforme tout-en-un pour créer, organiser et gérer vos événements professionnels, avec une expérience utilisateur soignée et des outils à la pointe.",
+    "tags": ["ReactJS", "TypeScript", "Paiement mobile", "AdonisJS", "PostgreSQL"],
     "image": "/projects/ticky.png",
     "link": "https://ticky.azariats.cloud"
   },
   {
-    "title": "GLCH community landing page",
+    "title": "Site vitrine GLCH",
     "description":
-      "Showcase site of a community health association in the western region of Cameroon with monitoring and registration for community events.",
-    "tags": ["ReactJS", "TypeScript", "Map", "PostgreSQL"],
+      "Site vitrine d'une association de santé communautaire de la région ouest du Cameroun, avec suivi et inscription aux événements communautaires.",
+    "tags": ["ReactJS", "TypeScript", "Carte interactive", "PostgreSQL"],
     "image": "/projects/glch-landing.png",
     "link": "https://glchcommunity.online/"
   },
   {
     "title": "Validix - JS",
     "description":
-      "A fast, vanilla JS form validator designed for quick use in projects, eliminating the need for complex and often difficult-to-implement frameworks.",
-    "tags": ["HTML", "CSS", "Javascript Vanilla"],
-    "image":
-      "/placeholder.svg",
+      "Un validateur de formulaires rapide en JavaScript pur, pensé pour une intégration rapide dans vos projets, sans avoir besoin de frameworks complexes et souvent difficiles à mettre en place.",
+    "tags": ["HTML", "CSS", "JavaScript Vanilla"],
+    "image": "/placeholder.svg",
     "github": "https://github.com/Padevend/Validix.git"
   },
   {
-    "title": "Learn Machine Learning",
-    "description": "Write machine learning algorithms, from the most basic to the most advanced, from scratch to grasp the mathematical essence behind the performance of AI tools.",
-    "tags": ["ML", "Artificial Intelligence", "Mathematics", "Optimization", "Algorithmic", "Python", "Jupyter"],
+    "title": "Apprendre le Machine Learning",
+    "description":
+      "Écriture d'algorithmes de machine learning, des plus simples aux plus avancés, développés à partir de zéro pour comprendre les fondements mathématiques qui expliquent la performance des outils d'IA.",
+    "tags": ["ML", "Intelligence artificielle", "Mathématiques", "Optimisation", "Algorithmique", "Python", "Jupyter"],
     "image": "/projects/ml_learn.jpg",
     "github": "https://github.com/Padevend/ml-from-scratch"
   }

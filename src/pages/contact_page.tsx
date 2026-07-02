@@ -5,12 +5,9 @@ import {
   Linkedin,
   Mail,
   Send,
-  Terminal,
-  Cpu,
   Globe,
   Phone,
-  ShieldCheck,
-  Activity,
+  Loader2,
 } from "lucide-react";
 import axios from "axios";
 
@@ -22,16 +19,18 @@ const CustomToast = ({
   type: "success" | "error";
 }) => (
   <motion.div
-    initial={{ opacity: 0, y: 50 }}
+    initial={{ opacity: 0, y: 40 }}
     animate={{ opacity: 1, y: 0 }}
-    className={`fixed bottom-10 right-10 z-[200] px-6 py-3 rounded-xl border shadow-2xl font-mono text-xs flex items-center gap-3 ${
+    className={`fixed bottom-10 right-10 z-[200] px-6 py-4 border shadow-lg text-xs font-medium flex items-center gap-3 bg-white ${
       type === "success"
-        ? "bg-green-50 border-green-200 text-green-700"
-        : "bg-red-50 border-red-200 text-red-700"
+        ? "border-emerald-200 text-emerald-700"
+        : "border-red-200 text-red-700"
     }`}
   >
-    <div
-      className={`w-2 h-2 rounded-full ${type === "success" ? "bg-green-500" : "bg-red-500"} animate-pulse`}
+    <span
+      className={`w-1.5 h-1.5 rounded-full ${
+        type === "success" ? "bg-emerald-500" : "bg-red-500"
+      }`}
     />
     {message}
   </motion.div>
@@ -43,13 +42,11 @@ export const Contact: React.FC = () => {
     email: "",
     message: "",
   });
-  const [status, setStatus] = useState<
-    "idle" | "submitting" | "success" | "error"
-  >("idle");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [toastMsg, setToastMsg] = useState("");
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -69,20 +66,19 @@ export const Contact: React.FC = () => {
       });
 
       setStatus("success");
-      setToastMsg("SIGNAL_DEPOSITED_SUCCESSFULLY");
+      setToastMsg("Votre message a bien été envoyé");
       setFormData({ name: "", email: "", message: "" });
 
       setTimeout(() => setStatus("idle"), 5000);
     } catch (error) {
       setStatus("error");
-      setToastMsg("SIGNAL_TRANSMISSION_FAILED");
+      setToastMsg("L'envoi a échoué, réessayez plus tard");
       setTimeout(() => setStatus("idle"), 5000);
     }
   };
 
   useEffect(() => {
-    document.title = "Contact - MBAH-NDAM TSOMELOU Pavel";
-
+    document.title = "Contact — Pavel Mbah-Ndam";
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
@@ -91,179 +87,169 @@ export const Contact: React.FC = () => {
       icon: Github,
       label: "GitHub",
       url: "https://github.com/Padevend",
-      color: "text-slate-900",
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
       url: "https://cm.linkedin.com/in/mbah-nadam-pavel-developpeur-web",
-      color: "text-blue-700",
     },
     {
       icon: Mail,
       label: "Email",
       url: "mailto:mbpavel21@gmail.com",
-      color: "text-red-600",
     },
   ];
 
   return (
     <section
       id="contact"
-      className="relative py-32 px-6 bg-white overflow-hidden font-sans"
+      className="relative py-32 px-6 lg:px-24 bg-white overflow-hidden font-sans"
     >
-      {/* Background Tech Decors */}
-      <div className="absolute inset-0 opacity-40 pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:40px_40px]" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
-      </div>
-
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header Section */}
+        {/* En-tête */}
         <div className="mb-20">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 text-blue-600 font-mono text-[10px] tracking-[0.3em] uppercase mb-4"
+            viewport={{ once: true }}
+            className="flex items-center gap-2.5 mb-4"
           >
-            <div className="w-8 h-[1px] bg-blue-600" />
-            Establish_Connection
+            <span className="h-1.5 w-1.5 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,1)]" />
+            <span className="text-[10px] font-medium tracking-[0.3em] uppercase text-neutral-400">
+              05 / Contact
+            </span>
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter"
+            viewport={{ once: true }}
+            className="text-4xl md:text-6xl font-light text-neutral-950 tracking-tight uppercase leading-none"
           >
-            GET IN <span className="text-blue-600">TOUCH.</span>
+            Parlons de <br />
+            <span className="font-serif italic text-neutral-400 normal-case">
+              votre projet.
+            </span>
           </motion.h2>
         </div>
 
         <div className="grid lg:grid-cols-12 gap-16">
-          {/* Left Side: System Metrics & Info */}
+          {/* COLONNE GAUCHE : informations */}
           <div className="lg:col-span-5 space-y-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="p-8 bg-slate-50 border border-slate-100 rounded-[2rem] relative overflow-hidden"
+              viewport={{ once: true }}
+              className="p-8 bg-neutral-50/50 border border-neutral-200/80"
             >
-              <div className="absolute top-0 right-0 p-4">
-                <Cpu className="text-blue-100" size={60} />
-              </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <Terminal size={20} className="text-blue-600" />
-                Neural_Core.link
+              <h3 className="text-lg font-medium text-neutral-950 uppercase tracking-wide mb-4">
+                Disponible pour de nouveaux projets
               </h3>
-              <p className="text-slate-500 font-mono text-xs leading-relaxed mb-8">
-                Prêt pour de nouvelles collaborations. Mon système est optimisé
-                pour transformer vos concepts complexes en architectures
-                numériques fluides.
+              <p className="text-neutral-500 text-xs font-light leading-relaxed mb-8 max-w-sm">
+                Que vous ayez une idée précise ou un besoin encore flou, je
+                suis à l'écoute pour transformer votre projet en une
+                application claire, fiable et bien conçue.
               </p>
 
               <div className="space-y-4">
-                <div className="flex items-center gap-4 text-xs font-mono">
-                  <div className="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-blue-600">
+                <a
+                  href="mailto:mbpavel21@gmail.com"
+                  className="flex items-center gap-4 text-xs text-neutral-600 hover:text-blue-600 transition-colors duration-300 group"
+                >
+                  <span className="w-8 h-8 border border-neutral-200 flex items-center justify-center text-neutral-400 group-hover:border-blue-600 group-hover:text-blue-600 transition-colors duration-300 shrink-0">
                     <Mail size={14} />
-                  </div>
-                  <span className="text-slate-600">mbpavel21@gmail.com</span>
-                </div>
-                <div className="flex items-center gap-4 text-xs font-mono">
-                  <div className="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-blue-600">
-                    <Phone size={14} />
-                  </div>
-                  <span className="text-slate-600">+237 671 941 782</span>
-                </div>
-                <div className="flex items-center gap-4 text-xs font-mono">
-                  <div className="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-blue-600">
-                    <Globe size={14} />
-                  </div>
-                  <span className="text-slate-600">
-                    Douala/Yaoundé, Cameroon
                   </span>
+                  mbpavel21@gmail.com
+                </a>
+                <a
+                  href="tel:+237671941782"
+                  className="flex items-center gap-4 text-xs text-neutral-600 hover:text-blue-600 transition-colors duration-300 group"
+                >
+                  <span className="w-8 h-8 border border-neutral-200 flex items-center justify-center text-neutral-400 group-hover:border-blue-600 group-hover:text-blue-600 transition-colors duration-300 shrink-0">
+                    <Phone size={14} />
+                  </span>
+                  +237 671 941 782
+                </a>
+                <div className="flex items-center gap-4 text-xs text-neutral-600">
+                  <span className="w-8 h-8 border border-neutral-200 flex items-center justify-center text-neutral-400 shrink-0">
+                    <Globe size={14} />
+                  </span>
+                  Douala / Yaoundé, Cameroun
                 </div>
               </div>
             </motion.div>
 
-            <div className="px-4">
-              <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block mb-6">
-                Social_Nodes
+            <div>
+              <span className="text-[10px] font-medium text-neutral-400 uppercase tracking-[0.3em] block mb-6">
+                Retrouvez-moi aussi ici
               </span>
               <div className="flex gap-4">
                 {socialLinks.map((link, idx) => (
                   <motion.a
                     key={idx}
                     href={link.url}
-                    whileHover={{ scale: 1.1, y: -5 }}
-                    className="w-12 h-12 rounded-2xl bg-white border border-slate-200 flex items-center justify-center shadow-sm hover:border-blue-500/50 hover:text-blue-600 transition-all"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -4 }}
+                    className="w-12 h-12 border border-neutral-200 flex items-center justify-center text-neutral-500 hover:border-blue-600 hover:text-blue-600 transition-all duration-300"
+                    aria-label={link.label}
                   >
-                    <link.icon size={20} />
+                    <link.icon size={18} strokeWidth={1.5} />
                   </motion.a>
                 ))}
               </div>
             </div>
-
-            <div className="p-6 border border-blue-50 bg-blue-50/30 rounded-2xl flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <Activity size={16} className="text-blue-500 animate-pulse" />
-                <span className="text-[10px] font-mono font-bold text-blue-700 uppercase">
-                  Available_for_work
-                </span>
-              </div>
-              <ShieldCheck size={16} className="text-blue-300" />
-            </div>
           </div>
 
-          {/* Right Side: Terminal Form */}
+          {/* COLONNE DROITE : formulaire */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            className="lg:col-span-7 bg-white border border-slate-200 rounded-[2.5rem] shadow-xl shadow-slate-100 p-8 md:p-12 relative overflow-hidden"
+            viewport={{ once: true }}
+            className="lg:col-span-7 bg-white border border-neutral-200 p-8 md:p-12"
           >
-            {/* Form Background Accent */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-purple-500 to-blue-400" />
-
-            <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+            <form onSubmit={handleSubmit} className="space-y-8">
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-mono font-black text-slate-400 uppercase tracking-widest ml-1">
-                    01_Identity
+                  <label className="text-[10px] font-medium text-neutral-400 uppercase tracking-widest">
+                    Nom ou organisation
                   </label>
                   <input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="NOM / ORGANISATION"
-                    className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-mono focus:outline-none focus:border-blue-500/50 focus:bg-white transition-all"
+                    placeholder="Votre nom"
+                    className="w-full bg-neutral-50/50 border border-neutral-200 px-5 py-3.5 text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all duration-300"
                     required
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-mono font-black text-slate-400 uppercase tracking-widest ml-1">
-                    02_Signal_Path
+                  <label className="text-[10px] font-medium text-neutral-400 uppercase tracking-widest">
+                    Adresse email
                   </label>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="EMAIL_ADRESSE"
-                    className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-mono focus:outline-none focus:border-blue-500/50 focus:bg-white transition-all"
+                    placeholder="vous@exemple.com"
+                    className="w-full bg-neutral-50/50 border border-neutral-200 px-5 py-3.5 text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all duration-300"
                     required
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-mono font-black text-slate-400 uppercase tracking-widest ml-1">
-                  03_Data_Packet
+                <label className="text-[10px] font-medium text-neutral-400 uppercase tracking-widest">
+                  Votre message
                 </label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows={6}
-                  placeholder="VOTRE MESSAGE / CAHIER DES CHARGES..."
-                  className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-sm font-mono focus:outline-none focus:border-blue-500/50 focus:bg-white transition-all resize-none"
+                  placeholder="Décrivez votre projet ou votre besoin..."
+                  className="w-full bg-neutral-50/50 border border-neutral-200 px-5 py-3.5 text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition-all duration-300 resize-none"
                   required
                 />
               </div>
@@ -271,28 +257,26 @@ export const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="group relative w-full overflow-hidden bg-slate-900 text-white py-5 rounded-2xl font-mono text-xs font-black uppercase tracking-[0.3em] transition-all hover:bg-blue-600 disabled:opacity-70"
+                className="group relative w-full overflow-hidden bg-neutral-950 text-white py-4 text-[10px] font-medium uppercase tracking-[0.3em] transition-colors duration-300 hover:bg-blue-600 disabled:opacity-60"
               >
                 <span className="relative z-10 flex items-center justify-center gap-3">
                   {status === "submitting" ? (
                     <>
-                      <RefreshCw className="animate-spin" size={16} />
-                      TRANSMISSION_IN_PROGRESS...
+                      <Loader2 className="animate-spin" size={14} />
+                      Envoi en cours...
                     </>
                   ) : (
                     <>
-                      <Send size={16} />
-                      EXECUTE_TRANSMISSION
+                      <Send size={14} />
+                      Envoyer le message
                     </>
                   )}
                 </span>
-                <div className="absolute inset-0 bg-blue-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
               </button>
 
-              <div className="flex justify-between items-center text-[8px] font-mono text-slate-400 uppercase tracking-tighter mt-4">
-                <span>Security: SSL_ENCRYPTED</span>
-                <span>Port: 443_ACTIVE</span>
-              </div>
+              <p className="text-[10px] text-neutral-400 text-center">
+                Connexion sécurisée · vos données ne sont partagées avec personne.
+              </p>
             </form>
           </motion.div>
         </div>
@@ -306,31 +290,5 @@ export const Contact: React.FC = () => {
     </section>
   );
 };
-
-// Helper for the spinner used in the button
-const RefreshCw = ({
-  className,
-  size,
-}: {
-  className?: string;
-  size?: number;
-}) => (
-  <svg
-    className={className}
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
-    <path d="M21 3v5h-5" />
-    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
-    <path d="M3 21v-5h5" />
-  </svg>
-);
 
 export default Contact;
